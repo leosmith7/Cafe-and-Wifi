@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block title %}Cafe & Wifi{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    {% for cafe in all_cafes %}
+
+    <div class="col-md-4">
+        <div class="flip-card">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <div class="card">
+                        <div class="card-body">
+                            <img src="{{ cafe.img_url }}" alt="{{ cafe.name }}" width="300" height="200">
+
+                        </div>
+                        <h5>{{cafe.name}}</h5>
+                    </div>
+                </div>
+                <div class="flip-card-back">
+                    <div class="card  text-white" style="background-color: #6f4e37">
+                        <div class="card-body">
+                            <h4 class="card-title">{{ cafe.name }}</h4>
+                            <div class="row">
+                                <div class="col-6">
+                                    Coffee Price:
+                                </div>
+                                <div class="col-6">
+                                    {{cafe.coffee_price}}
+                                </div>
+                                <div class="col-6">
+                                    Seat Availability:
+                                </div>
+                                <div class="col-6">
+                                    {{cafe.seats}}
+                                </div>
+                                <div class="col-6">
+                                    Has Sockets:
+                                </div>
+                                <div class="col-6">
+                                    {% if cafe.has_sockets == True %}
+                                    ✅
+                                    {% else %}
+                                    ❌
+                                    {% endif %}
+                                </div>
+                                <div class="col-6">
+                                    Has Toilet:
+                                </div>
+                                <div class="col-6">
+                                    {% if cafe.has_toilet == True %}
+                                    ✅
+                                    {% else %}
+                                    ❌
+                                    {% endif %}
+
+                                </div>
+                                <div class="col-6">
+                                    Has WiFi:
+                                </div>
+                                <div class="col-6">
+                                    {% if cafe.has_wifi == True %}
+                                    ✅
+                                    {% else %}
+                                    ❌
+                                    {% endif %}
+
+                                </div>
+                                <div class="col-6">
+                                    Takes Calls:
+                                </div>
+                                <div class="col-6">
+                                    {% if cafe.can_take_calls == True %}
+                                    ✅
+                                    {% else %}
+                                    ❌
+                                    {% endif %}
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                        <div class="container mb-3">
+                            <div class="row justify-content-around">
+                                <div class="col-md-3">
+                                    <a class="btn btn-primary btn-block" href="{{ cafe.map_url }}" target="_blank">Google
+                                        Maps</a>
+                                </div>
+                                <div class="col-md-3">
+                                    <form action="{{ url_for('delete', cafe_id=cafe.id) }}" method="get">
+                                        <button type="submit" class="btn btn-danger btn-block">Delete Cafe</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+{% endblock %}

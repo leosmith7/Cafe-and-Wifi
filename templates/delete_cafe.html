@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}Delete Cafe{% endblock %}
+
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh; /* Full height */
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+        }
+        .input-group {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+        label {
+            margin-right: 10px;
+        }
+        input[type="text"] {
+            padding: 5px;
+            margin-right: 10px;
+        }
+        input[type="submit"] {
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+
+{% block content %}
+
+<div class="container">
+    <h1>Delete Cafe</h1>
+    <form method="POST" action="{{ url_for('delete', cafe_id=cafe_id) }}">
+        <div class="input-group">
+            <label for="apiKey">Enter API Key:</label>
+            <input type="text" id="apiKey" name="apiKey" placeholder="API Key" required>
+            <input type="submit" value="Submit">
+        </div>
+    </form>
+</div>
+
+
+
+{% endblock %}
